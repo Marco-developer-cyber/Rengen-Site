@@ -7,7 +7,6 @@ import { ProcessSteps } from "./homeComponents/ProcessSteps";
 import { Footer } from "./homeComponents/footer";
 
 const Home: React.FC = () => {
-  const [isHovered, setIsHovered] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
