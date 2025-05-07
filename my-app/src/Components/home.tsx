@@ -64,7 +64,7 @@ const Home: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1, delay: 2 }}
           className="max-w-2xl"
         >
           {/* Заголовок с эффектом неоновой подсветки */}
@@ -76,7 +76,7 @@ const Home: React.FC = () => {
               y: 0,
               textShadow: "0 0 15px rgba(206, 103, 211, 0.5)",
             }}
-            transition={{ duration: 1.2, delay: 0.3 }}
+            transition={{ duration: 1.2, delay: 2.3 }}
           >
             AI Рентген-Анализ
           </motion.h1>
@@ -86,7 +86,7 @@ const Home: React.FC = () => {
             className="text-xl text-white/80 mb-12 leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
+            transition={{ duration: 1, delay: 2.5 }}
           >
             <span className="inline-block">
               {`Мгновенная диагностика с точностью 98.7%`
@@ -96,7 +96,7 @@ const Home: React.FC = () => {
                     key={i}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.7 + i * 0.03 }}
+                    transition={{ delay: 2.7 + i * 0.03 }}
                   >
                     {char}
                   </motion.span>
@@ -133,7 +133,7 @@ const Home: React.FC = () => {
             className="mt-16 grid grid-cols-3 gap-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
+            transition={{ delay: 3.5 }}
           >
             {[
               "✓ Точность 98.7%",
@@ -149,7 +149,7 @@ const Home: React.FC = () => {
                   boxShadow: "0 10px 20px rgba(0, 194, 209, 0.2)",
                 }}
               >
-                <p className="text-[#00FFF7] " >{feature}</p>
+                <p className="text-[#00FFF7]">{feature}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -160,13 +160,13 @@ const Home: React.FC = () => {
       <motion.div
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
         animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        transition={{ duration: 2, repeat: Infinity, delay: 2 }}
       >
         <div className="w-6 h-10 border-2 border-[#00C2D1] rounded-full flex justify-center">
           <motion.div
             className="w-1 h-2 bg-[#00C2D1] rounded-full mt-2"
             animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
+            transition={{ duration: 1.5, repeat: Infinity, delay: 2 }}
           />
         </div>
       </motion.div>
