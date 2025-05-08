@@ -28,7 +28,7 @@ const Home: React.FC = () => {
     <div className="relative min-h-screen overflow-hidden bg-[#0C0F3A]">
       {/* Космическое видео с эффектом параллакса */}
       <motion.div
-        className="absolute inset-0 z-0 overflow-hidden"
+        className="video-container absolute inset-0 z-0 overflow-hidden"
         initial={{ scale: 1 }}
         animate={{ scale: 1.05 }}
         transition={{
@@ -130,7 +130,7 @@ const Home: React.FC = () => {
 
           {/* Анимированные фишки сервиса */}
           <motion.div
-            className="mt-16 grid grid-cols-3 gap-6"
+            className="mt-16 features-grid"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 3.5 }}
@@ -142,14 +142,14 @@ const Home: React.FC = () => {
             ].map((feature, i) => (
               <motion.div
                 key={i}
-                className="p-4 bg-black/20 backdrop-blur-sm rounded-lg border border-[#00C2D1]/30"
+                className="feature-item"
                 whileHover={{
                   y: -5,
                   borderColor: "#CE67D3",
                   boxShadow: "0 10px 20px rgba(0, 194, 209, 0.2)",
                 }}
               >
-                <p className="text-[#00FFF7]">{feature}</p>
+                <p>{feature}</p>
               </motion.div>
             ))}
           </motion.div>

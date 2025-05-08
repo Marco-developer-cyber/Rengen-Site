@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ReactCompareImage from 'react-compare-image';
 import { motion } from 'framer-motion';
-
+import '../Styles/ImageComparisonSlider.css'
 export const ImageComparisonSlider = () => {
   const cases = [
     {
@@ -21,7 +21,7 @@ export const ImageComparisonSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="relative py-20 overflow-hidden">
+    <div className="comparison-container relative py-20 overflow-hidden">
       {/* Фоновый градиент + частицы */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0C0F3A] to-[#1A0033] opacity-90" />
