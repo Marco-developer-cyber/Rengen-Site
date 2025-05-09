@@ -5,14 +5,14 @@ import '../Styles/ImageComparisonSlider.css'
 export const ImageComparisonSlider = () => {
   const cases = [
     {
-      before: "/cases/pneumonia-before.jpg",
-      after: "/cases/pneumonia-after.jpg",
+      before: "/Images/image.jpg",
+      after: "/Images/image (1).jpg",
       title: "Пневмония",
       description: "AI выделил зону воспаления (стрелка)"
     },
     {
-      before: "/cases/fracture-before.jpg",
-      after: "/cases/fracture-after.jpg",
+      before: "/Images/left-leg.png",
+      after: "/Images/right-leg.jpg",
       title: "Перелом",
       description: "Обнаружена трещина в лучевой кости"
     }

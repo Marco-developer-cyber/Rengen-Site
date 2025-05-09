@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import "./Styles/result.css";
+import Comments from "./UploadButtons/Comments";
 
 interface ResultsPageProps {
   file: File | null;
@@ -23,7 +24,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
   const [showShareModal, setShowShareModal] = useState(false);
   const pdfRef = useRef<HTMLDivElement>(null);
 
-  console.log("Metadata in ResultsPage:", metadata); // Логирование для отладки
+  console.log("Metadata in ResultsPage:", metadata);
 
   const similarCases = [
     {
@@ -84,7 +85,6 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
 
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
 
-      // Добавляем метаданные пациента
       pdf.setFontSize(10);
       pdf.setTextColor(40);
       pdf.text(
@@ -98,7 +98,6 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
       pdf.text(`Врач: ${metadata?.doctor || "Не указано"}`, 15, 30);
       pdf.text(`Дата: ${new Date().toLocaleDateString()}`, 15, 35);
 
-      // Водяной знак
       pdf.setFontSize(40);
       pdf.setTextColor(200, 200, 200, 30);
       pdf.text("МедАнализ", pdfWidth / 2, pdfHeight / 2, { angle: 45 });
@@ -117,7 +116,6 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
   return (
     <div className="backGround">
       <div className="results-page" ref={pdfRef}>
-        {/* Шапка с данными пациента */}
         <div className="patient-header">
           <div className="patient-info-grid">
             <div className="patient-info-item">
@@ -252,6 +250,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
               viewBox="0 0 24 24"
               width="20"
               height="20"
+              fill="white"
             >
               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
             </svg>
@@ -267,6 +266,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
               viewBox="0 0 24 24"
               width="20"
               height="20"
+              fill="white"
             >
               <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
             </svg>
@@ -275,13 +275,14 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
 
           <button
             onClick={() => window.print()}
-            className="action-button print-button "
+            className="action-button print-button"
           >
             <svg
-              className="button-icon "
+              className="button-icon"
               viewBox="0 0 24 24"
               width="20"
               height="20"
+              fill="white"
             >
               <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" />
             </svg>
@@ -304,7 +305,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
                   className="share-option telegram"
                 >
                   <svg className="share-icon" viewBox="0 0 24 24">
-                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394a.759.759 0 0 1-.6.295l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.57-4.458c.538-.196 1.006.128.832.941z" />
+                    <path d="M12 0C5.373 0 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394a.759.759 0 0 1-.6.295l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.57-4.458c.538-.196 1.006.128.832.941z" />
                   </svg>
                   Отправить в Telegram
                 </button>
@@ -313,7 +314,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
                   onClick={() => handleShare("copy")}
                   className="share-option copy-link"
                 >
-                  <svg className="share-icon " viewBox="0 0 24 24">
+                  <svg className="share-icon" viewBox="0 0 24 24">
                     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
                   </svg>
                   Копировать ссылку
@@ -330,6 +331,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
           </div>
         )}
       </div>
+      <Comments initialUsername={metadata?.name || "Не указано"} />
     </div>
   );
 };
