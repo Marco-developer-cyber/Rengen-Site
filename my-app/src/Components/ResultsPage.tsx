@@ -1,49 +1,37 @@
 import React, { useState, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import "./Styles/result.css";
 import Comments from "./UploadButtons/Comments";
 
-interface ResultsPageProps {
-  file: File | null;
-  fileUrl: string | null;
-  onBack: () => void;
-  metadata?: {
-    name: string;
-    surname: string;
-    age: string;
-    doctor: string;
-  } | null;
-}
-
-const ResultsPage: React.FC<ResultsPageProps> = ({
-  fileUrl,
-  onBack,
-  metadata,
-}) => {
+const ResultsPage: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [showShareModal, setShowShareModal] = useState(false);
   const pdfRef = useRef<HTMLDivElement>(null);
 
+  const { fileUrl, metadata } = location.state || {};
   console.log("Metadata in ResultsPage:", metadata);
 
   const similarCases = [
     {
       id: 1,
-      imageUrl: "https://radiopaedia.org/images/1567749",
+      imageUrl: "https://www.ckbran.ru/upload/medialibrary/10b/r1kwcbrmtwpm04pi5zccep60ecjtuk83.jpg",
       diagnosis: "Перелом лучевой кости",
       match: 88,
       description: "Классический перелом дистального отдела",
     },
     {
       id: 2,
-      imageUrl: "https://radiopaedia.org/images/1567750",
+      imageUrl: "https://www.dikul.net/files/images/wiki/osteoartroz4.jpg",
       diagnosis: "Остеоартрит 2 степени",
       match: 76,
       description: "Сужение суставной щели, остеофиты",
     },
     {
       id: 3,
-      imageUrl: "https://radiopaedia.org/images/1567751",
+      imageUrl: "https://cs12.pikabu.ru/post_img/big/2022/08/15/4/1660537276129999906.jpg",
       diagnosis: "Трещина кости",
       match: 42,
       description: "Линейный перелом без смещения",
@@ -113,6 +101,10 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
     }
   };
 
+  const handleBack = () => {
+    navigate("/uploadImages");
+  };
+
   return (
     <div className="backGround">
       <div className="results-page" ref={pdfRef}>
@@ -146,7 +138,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
           </div>
         </div>
 
-        <button onClick={onBack} className="back-button">
+        <button onClick={handleBack} className="back-button">
           <svg className="back-icon" viewBox="0 0 24 24">
             <path d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
@@ -252,7 +244,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
               height="20"
               fill="white"
             >
-              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+              <path d="M19 8h-4V3H9v5H5l7 7 7-7zM5 19v2h14v-2H5z" />
             </svg>
             <span className="button-text">Сохранить PDF</span>
           </button>
@@ -299,25 +291,25 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
                 {metadata?.name || "Не указано"}
               </p>
 
-              <div className="share-options">
+              <div className="share-options ">
                 <button
                   onClick={() => handleShare("telegram")}
                   className="share-option telegram"
                 >
-                  <svg className="share-icon" viewBox="0 0 24 24">
-                    <path d="M12 0C5.373 0 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394a.759.759 0 0 1-.6.295l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.57-4.458c.538-.196 1.006.128.832.941z" />
+                  <svg className="share-icon" viewBox="0 0 24 24" fill="white">
+                    <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" />
                   </svg>
                   Отправить в Telegram
                 </button>
 
                 <button
                   onClick={() => handleShare("copy")}
-                  className="share-option copy-link"
+                  className="share-option copy-link "
                 >
-                  <svg className="share-icon" viewBox="0 0 24 24">
+                  <svg className="share-icon" viewBox="0 0 24 24" fill="white">
                     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
                   </svg>
-                  Копировать ссылку
+                  <p className="text-white">Копировать ссылку</p>
                 </button>
               </div>
 

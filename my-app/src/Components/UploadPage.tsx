@@ -1,11 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Styles/UploadPage.css";
 
-interface UploadMenuProps {
-  onFileSelect: (file: File, fileUrl: string, metadata: { name: string, surname: string, age: string, doctor: string }) => void;
-}
-
-const UploadMenu: React.FC<UploadMenuProps> = ({ onFileSelect }) => {
+const UploadMenu: React.FC = () => {
+  const navigate = useNavigate();
   const [isDragging, setIsDragging] = useState(false);
   const [patientData, setPatientData] = useState({
     firstName: "",
@@ -73,7 +71,8 @@ const UploadMenu: React.FC<UploadMenuProps> = ({ onFileSelect }) => {
       return;
     }
 
-    onFileSelect(selectedFile, fileUrl, metadata);
+    // Перенаправляем на /results с передачей данных через состояние
+    navigate("/results", { state: { file: selectedFile, fileUrl, metadata } });
   };
 
   return (
