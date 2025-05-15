@@ -5,6 +5,7 @@ import Home from "./Components/home";
 import UploadMenu from "./Components/UploadPage";
 import ResultsPage from "./Components/ResultsPage";
 import { UniverseLoader } from "./Components/Loader/UniverseLoader";
+import TodoList from "./Components/TodoList";
 
 // Component to handle loader logic on route changes
 const RouteChangeHandler: React.FC<{ setIsLoading: (value: boolean) => void }> = ({ setIsLoading }) => {
@@ -36,14 +37,19 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      {isLoading && <UniverseLoader />}
-      <RouteChangeHandler setIsLoading={setIsLoading} />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/uploadImages" element={<UploadMenu />} />
-        <Route path="/results" element={<ResultsPage />} />
-      </Routes>
+      <div className="min-h-screen bg-[#1A0033]">
+        {isLoading && <UniverseLoader />}
+        <RouteChangeHandler setIsLoading={setIsLoading} />
+        <Header />
+        <main className="min-h-[calc(100vh-4rem)]">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/uploadImages" element={<UploadMenu />} />
+            <Route path="/results" element={<ResultsPage />} />
+            <Route path="/todos" element={<TodoList />} />
+          </Routes>
+        </main>
+      </div>
     </Router>
   );
 };

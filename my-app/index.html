@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" >
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -8,7 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
-        darkMode: 'class'
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1A0033',
+              accent1: '#00C2D1',
+              accent2: '#CE67D3',
+              text: '#00FFF7'
+            }
+          }
+        }
       }
     </script>
   </head>

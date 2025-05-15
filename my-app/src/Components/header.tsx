@@ -69,6 +69,12 @@ const Header: React.FC = () => {
           >
             Контакты
           </Link>
+          <Link
+            to="/todos"
+            className={`${location.pathname === '/todos' ? 'text-[#CE67D3]' : 'text-[#00FFF7]'} hover:text-[#CE67D3] transition duration-300 font-medium`}
+          >
+            Задачи
+          </Link>
         </nav>
 
         <div className="flex items-center space-x-4">
@@ -153,6 +159,13 @@ const Header: React.FC = () => {
               onClick={toggleMenu}
             >
               Контакты
+            </Link>
+            <Link
+              to="/todos"
+              className={`${location.pathname === '/todos' ? 'text-[#CE67D3]' : 'text-[#00FFF7]'} py-2 px-3 rounded-lg hover:bg-[#0C0F3A] transition duration-300`}
+              onClick={toggleMenu}
+            >
+              Задачи
             </Link>
             <Link 
               to="/uploadImages"
