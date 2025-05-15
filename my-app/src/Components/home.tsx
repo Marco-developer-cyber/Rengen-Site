@@ -158,18 +158,18 @@ const Home: React.FC = () => {
 
         {/* Анимированный скролл-хинт */}
         <motion.div
-  className="hidden md:block absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
-  animate={{ y: [0, 10, 0] }}
-  transition={{ duration: 2, repeat: Infinity, delay: 2 }}
->
-  <div className="w-6 h-10 border-2 border-cyan-400 rounded-full flex justify-center">
-    <motion.div
-      className="w-1 h-2 bg-cyan-400 rounded-full mt-2"
-      animate={{ y: [0, 4, 0] }}
-      transition={{ duration: 1.5, repeat: Infinity, delay: 2 }}
-    />
-  </div>
-</motion.div>
+          className="hidden md:block absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, delay: 2 }}
+        >
+          <div className="w-6 h-10 border-2 border-cyan-400 rounded-full flex justify-center">
+            <motion.div
+              className="w-1 h-2 bg-cyan-400 rounded-full mt-2"
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: 2 }}
+            />
+          </div>
+        </motion.div>
       </div>
       <ImageComparisonSlider/>
       <ProcessSteps/>

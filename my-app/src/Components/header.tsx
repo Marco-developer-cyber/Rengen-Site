@@ -4,28 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {  
-    // Проверяем предпочтения пользователя или сохраненную тему
-    return localStorage.getItem('theme') === 'dark' || 
-           (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  });
 
   const location = useLocation();
 
-  // Применяем тему при изменении состояния
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDarkMode]);
-
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
   // Закрываем меню при изменении маршрута
   useEffect(() => {
@@ -78,17 +60,7 @@ const Header: React.FC = () => {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-full bg-[#0C0F3A] hover:bg-[#00C2D1] transition duration-300 group"
-            aria-label={isDarkMode ? "Переключить на светлую тему" : "Переключить на темную тему"}
-          >
-            {isDarkMode ? (
-              <span className="block group-hover:scale-110">☀️</span>
-            ) : (
-              <span className="block group-hover:scale-110">🌙</span>
-            )}
-          </button>
+
 
           <Link 
             to="/uploadImages"
